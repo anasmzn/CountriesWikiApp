@@ -1,10 +1,17 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+
 namespace CountriesWiki.Extensions
 {
-    public class TaskExtensions
+    public static class TaskExtensions
     {
-        public TaskExtensions()
+        public static void FireAndForgetSafeAsync(this Task task)
         {
+            task.ContinueWith((t) =>
+            {
+                Debug.WriteLine(t.Exception);
+            }, TaskContinuationOptions.OnlyOnFaulted);
         }
     }
 }

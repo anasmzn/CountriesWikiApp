@@ -1,5 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CountriesWiki.App">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="CountriesWiki.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{x:AppThemeBinding Default=Black, Dark=White, Light=Black}" />
+            </Style>
+            <Style
+                x:Key="InfoStyle"
+                BaseResourceKey="TitleStyle"
+                TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

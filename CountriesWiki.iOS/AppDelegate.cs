@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace CountriesWiki.iOS
 {
@@ -22,9 +24,11 @@ namespace CountriesWiki.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Forms.SetFlags("AppTheme_Experimental");
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            CachedImageRenderer.Init();
+            var ignore = typeof(SvgCachedImage);
             return base.FinishedLaunching(app, options);
         }
     }

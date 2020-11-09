@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
 namespace CountriesWiki.Services
 {
-    public class INavigationService
+    public interface INavigationService
     {
-        public INavigationService()
-        {
-        }
+        Task PushAsync<T, K>(T page, K data = default) where T : Page;
+
+        Task PopAsync();
     }
 }

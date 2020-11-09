@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="CountriesWiki.View.CountriesListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+    <ContentPage.Padding>
+        <OnIdiom x:TypeArguments="Thickness">
+            <OnIdiom.Tablet>
+                <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
+            </OnIdiom.Tablet>
+        </OnIdiom>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <CollectionView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding Countries}"
+                SelectedItem="{Binding SelectedItem}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ffimageloadingsvg:SvgCachedImage
+                                Grid.Column="0"
+                                Aspect="AspectFill"
+                                HeightRequest="60"
+                                Source="{Binding Flag}"
+                                WidthRequest="80" />
+                            <StackLayout Grid.Column="1" Orientation="Vertical">
+                                <Label Style="{DynamicResource TitleStyle}" Text="{Binding Name}" />
+                                <Label Style="{DynamicResource InfoStyle}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Capital}" />
+                                            <Span Text=" | " />
+                                            <Span Text="{Binding Currencies[0].Name}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                            <ffimageloadingsvg:SvgCachedImage
+                                Grid.Column="2"
+                                Margin="0,0,10,0"
+                                HeightRequest="18"
+                                HorizontalOptions="End"
+                                Source="resource://CountriesWiki.Icons.chevronright.svg"
+                                VerticalOptions="Center"
+                                WidthRequest="18" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ActivityIndicator
+                AbsoluteLayout.LayoutBounds="0.5,0.5,50,50"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HeightRequest="50"
+                IsRunning="{Binding IsBusy}"
+                WidthRequest="50" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

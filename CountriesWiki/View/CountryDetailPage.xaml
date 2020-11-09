@@ -1,5 +1,66 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CountriesWiki.View.CountryDetailPage">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="CountriesWiki.View.CountryDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    Title="{Binding Country.Name}">
+    <ContentPage.Padding>
+        <OnIdiom x:TypeArguments="Thickness">
+            <OnIdiom.Tablet>
+                <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
+            </OnIdiom.Tablet>
+        </OnIdiom>
+    </ContentPage.Padding>
     <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.6*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.Row="0"
+                    Aspect="Fill"
+                    Source="{Binding Country.Flag}" />
+                <StackLayout
+                    Grid.Row="1"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical">
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Style="{DynamicResource TitleStyle}"
+                        Text="{Binding Country.Name}" />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Style="{DynamicResource InfoStyle}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Country.Capital}" />
+                                <Span Text=" | " />
+                                <Span Text="{Binding Country.Currencies[0].Name}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <Label
+                    Grid.Row="2"
+                    Style="{DynamicResource InfoStyle}"
+                    Text="{Binding CountryDetails}"
+                    TextColor="Gray" />
+            </Grid>
+            <ActivityIndicator
+                AbsoluteLayout.LayoutBounds="0.5,0.5,50,50"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HeightRequest="50"
+                IsRunning="{Binding IsBusy}"
+                WidthRequest="50" />
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -46,5 +46,17 @@ namespace CountriesWiki.Localization {
                 resourceCulture = value;
             }
         }
+        
+        internal static string strCountries {
+            get {
+                return ResourceManager.GetString("strCountries", resourceCulture);
+            }
+        }
+        
+        internal static string strCountryDetails {
+            get {
+                return ResourceManager.GetString("strCountryDetails", resourceCulture);
+            }
+        }
     }
 }
